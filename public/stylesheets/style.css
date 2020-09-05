@@ -172,6 +172,14 @@
     margin-bottom: .5%;
     opacity: .6;
   }
+
+  .meta {
+    font-size: 14px;
+  }
+
+  .created {
+    font-style: italic;
+  }
   
   .new-post-form input {
     width: 300px;

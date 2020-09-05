@@ -43,10 +43,15 @@ router.get('/', withAuth, (req, res) => {
 });
 
 router.get('/edit/:id', withAuth, (req, res) => {
+    console.log(req.session.user_id);
+    console.log(req.params.id);
+
+
     Post.findOne({
         where: {
             // use the ID from the session
-            user_id: req.session.user_id
+            // user_id: req.session.user_id
+            id: req.params.id
         },
         attributes: [
             'id',
@@ -70,8 +75,12 @@ router.get('/edit/:id', withAuth, (req, res) => {
         ]
     })
         .then(dbPostData => {
+
             // serialize data before passing to template
             const post = dbPostData.get({ plain: true });
+
+            console.log("title", post.title);
+            console.log("post_text", post.post_text);
 
             res.render('edit-post', { post, loggedIn: true });
         })
