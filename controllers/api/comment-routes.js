@@ -61,6 +61,33 @@ router.post('/', withAuth, (req, res) => {
     }
 });
 
+// PUT route to update a post's title and text
+router.put('/:id', withAuth, (req, res) => {
+    Comment.update(
+        {
+            comment_text: req.body.comment_text,
+            post_id: req.body.post_id,
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        }
+    )
+        .then(dbCommentData => {
+            // Why did i have to add [0] here?
+            if (!dbCommentData[0]) {
+                res.status(404).json({ message: 'No comment found with this id' });
+                return;
+            }
+            res.json(dbCommentData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+});
+
 router.delete('/:id', withAuth, (req, res) => {
     Comment.destroy({
         where: {

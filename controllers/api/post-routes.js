@@ -95,7 +95,7 @@ router.post('/', withAuth, (req, res) => {
         });
 });
 
-// PUT route to update a post's title
+// PUT route to update a post's title and text
 router.put('/:id', withAuth, (req, res) => {
     Post.update(
         {
@@ -109,7 +109,7 @@ router.put('/:id', withAuth, (req, res) => {
         }
     )
         .then(dbPostData => {
-            if (!dbPostData) {
+            if (!dbPostData[0]) {
                 res.status(404).json({ message: 'No post found with this id' });
                 return;
             }

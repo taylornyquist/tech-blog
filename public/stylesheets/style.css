@@ -1,6 +1,19 @@
 * {
     box-sizing: border-box;
   }
+
+  ::-webkit-input-placeholder {
+    font-style: italic;
+  }
+  :-moz-placeholder {
+    font-style: italic;  
+  }
+  ::-moz-placeholder {
+    font-style: italic;  
+  }
+  :-ms-input-placeholder {  
+    font-style: italic; 
+  }
   
   body, html {
     height: 100%;
@@ -45,6 +58,8 @@
     padding: .5%;
     border-radius: 5px;
     border: 1px solid #ccc;
+    font-family: sans-serif;
+    color: #333;
   }
   
   textarea:focus, input:focus {
@@ -55,6 +70,12 @@
   textarea {
     min-width: 40%;
     min-height: 100px;
+  }
+
+  .text-area, #post-text, #comment-body {
+    font-family: sans-serif;
+    color: #333;
+    text-align: left;
   }
   
   form > div {
@@ -131,15 +152,6 @@
   .edit-link {
     display: block;
     margin: -1.5% 0 2% 0;
-  }
-  
-  .upvote-btn {
-    background-color: #197d0f;
-    transition: background-color .1s;
-  }
-  
-  .upvote-btn:hover {
-    background-color: #1f9c13;
   }
   
   .comment-form {
